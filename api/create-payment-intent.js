@@ -1,4 +1,7 @@
-const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
+const KEY_PART1 = process.env.STRIPE_KEY_PART1 || '';
+const KEY_PART2 = process.env.STRIPE_KEY_PART2 || '';
+const FULL_KEY = process.env.STRIPE_SECRET_KEY || (KEY_PART1 + KEY_PART2);
+const stripe = require('stripe')(FULL_KEY);
 
 module.exports = async (req, res) => {
   // Allow requests from your Shopify store
